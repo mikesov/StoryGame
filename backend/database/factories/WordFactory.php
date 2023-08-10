@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BlinkWord>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Word>
  */
-class BlinkWordFactory extends Factory
+class WordFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,9 @@ class BlinkWordFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => $this->faker->words(),
+            'sentence_id' => 1,
+            'content' => '',
+            'order' => 1,
         ];
     }
 }

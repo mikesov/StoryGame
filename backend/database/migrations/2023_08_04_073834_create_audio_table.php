@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('audio', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('word_id')->nullable()->constrained();
+            $table->foreignId('sentence_id')->nullable()->constrained();
             $table->string('name', 64);
-            $table->addColumn('audio', 'varbinary');
+            $table->text('audio');
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('audio');
+        Schema::dropIfExists('audios');
     }
 };

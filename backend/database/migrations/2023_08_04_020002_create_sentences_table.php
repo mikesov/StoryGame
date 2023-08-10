@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('sentences', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('story_id');
-            $table->foreignId('story_id')->constrained();
-            $table->unsignedBigInteger('image_id');
-            $table->foreignId('image_id')->constrained();
-            $table->integer('page_number');
+            $table->foreignId('page_id')->constrained();
+            $table->integer('coordinateX');
+            $table->integer('coordinateY');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('sentences');
     }
 };

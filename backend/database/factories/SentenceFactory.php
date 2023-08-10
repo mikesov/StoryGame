@@ -17,7 +17,10 @@ class SentenceFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => $this->faker->text(),
+            'page_id' => 10,
+            'coordinateX' => 1900,
+            'coordinateY' => 300,
+            'content' => 'It\'s fun to make something together. Now let\'s enjoy',
         ];
     }
 }

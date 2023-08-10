@@ -17,6 +17,7 @@ class PageFactory extends Factory
     public function definition(): array
     {
         return [
+            'story_id' => 1,
             'page_number' => $this->faker->numberBetween(1, 20),
         ];
     }

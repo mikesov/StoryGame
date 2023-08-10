@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('movements', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('touchable_id')->nullable()->constrained();
             $table->integer('coordinateX');
             $table->integer('coordinateY');
         });

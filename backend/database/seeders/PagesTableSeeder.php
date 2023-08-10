@@ -16,11 +16,6 @@ class PagesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Page::factory(1000)->create()
-        ->each(function ($page) {
-            Sentence::factory(1000)->create(['page_id' => $page->id])->unique();
-            Audio::factory(1000)->create(['page_id' => $page->id])->unique();
-            BackgroundImage::factory(1000)->create(['page_id' => $page->id])->unique();
-        });
+        Page::factory(1)->create();
     }
 }

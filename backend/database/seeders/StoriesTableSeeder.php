@@ -17,21 +17,6 @@ class StoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Story::factory(110)->create()
-//        ->each(function ($story) {
-//            ReadHistory::factory(10000)
-//                ->create(['user_id' => $story->id]);
-//            WriteHistory::factory(200)
-//                ->create(['user_id' => $story->id]);
-//            UserAchievement::factory(1000)
-//                ->create(['user_id' => $story->id]);
-//            Page::factory(1000)
-//                ->create(['story_id' => $story->id]);
-//            StoryGenre::factory(110)
-//                ->create(['story_id' => $story->id]);
-//            DeleteHistory::factory(10)
-//                ->create(['story_id' => $story->id]);
-//        })
-        ;
+        Story::factory(1)->create();
     }
 }

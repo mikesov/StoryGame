@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('touchable', function (Blueprint $table) {
+        Schema::create('touchables', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('audio_id');
             $table->foreignId('audio_id')->constrained();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('touchable');
+        Schema::dropIfExists('touchables');
     }
 };

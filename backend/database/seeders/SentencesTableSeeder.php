@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\BlinkWord;
+use App\Models\Word;
 use App\Models\Sentence;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,9 +14,6 @@ class SentencesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Sentence::factory(1000)->create()
-        ->each(function ($sentence) {
-            BlinkWord::factory(10000)->create(['sentence_id' => $sentence->id]);
-        });
+        Sentence::factory(1)->create();
     }
 }

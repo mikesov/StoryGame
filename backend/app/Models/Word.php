@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlinkWord extends Model
+class Word extends Model
 {
     use HasFactory;
     public $timestamps = false;

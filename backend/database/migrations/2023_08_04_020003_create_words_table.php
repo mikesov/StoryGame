@@ -13,12 +13,7 @@ return new class extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sentence_id');
             $table->foreignId('sentence_id')->constrained();
-            $table->unsignedBigInteger('audio_id');
-            $table->foreignId('audio_id')->constrained();
-            $table->unsignedBigInteger('touchable_id');
-            $table->foreignId('touchable_id')->nullable()->constrained();
             $table->string('content');
             $table->integer('order');
         });

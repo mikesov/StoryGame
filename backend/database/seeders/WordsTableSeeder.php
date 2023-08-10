@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\BlinkObject;
-use App\Models\BlinkWord;
+use App\Models\Touchable;
+use App\Models\Word;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,10 +14,6 @@ class WordsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        BlinkWord::factory(5000)->create()
-        ->each(function ($blinkWord) {
-            BlinkObject::factory(5000)
-                ->create(['word_id' => $blinkWord->id]);
-        });
+        Word::factory(1)->create();
     }
 }

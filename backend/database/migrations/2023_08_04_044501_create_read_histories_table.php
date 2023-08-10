@@ -13,9 +13,7 @@ return new class extends Migration {
     {
         Schema::create('read_histories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->unsignedBigInteger('story_id');
             $table->foreignId('story_id')->nullable()->constrained();
             $table->unique(['user_id', 'story_id']);
             $table->boolean('finish');

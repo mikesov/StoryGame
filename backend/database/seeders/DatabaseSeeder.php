@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SentencesTableSeeder::class);
         $this->call(WordsTableSeeder::class);
         $this->call(BlinkImagesTableSeeder::class);
-        $this->call(TouchableTableSeeder::class);
-        $this->call(AudioTableSeeder::class);
+        $this->call(TouchablesTableSeeder::class);
+        $this->call(AudiosTableSeeder::class);
         $this->call(BackgroundImagesSeeder::class);
         $this->call(MovementsTableSeeder::class);
         $this->call(DeleteHistoriesTableSeeder::class);

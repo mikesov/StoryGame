@@ -24,10 +24,9 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => $this->faker->dateTime($max = 'now', $timezone = 'Asia/Ho_Chi_Minh'),
             'password' => Hash::make(Str::random(8)), // password
-            'coins' => $this->faker->numberBetween(0, 9000),
+            'coins' => 0,
             'phone' => $this->faker->e164PhoneNumber(),
-            'stories_read' => $this->faker->numberBetween(0, 100),
-            'admin' => $this->faker->boolean($chanceOfGettingTrue = 1),
+            'stories_read' => 0,
             'remember_token' => Str::random(10),
         ];
     }

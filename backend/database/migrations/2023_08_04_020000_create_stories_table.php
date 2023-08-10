@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('image_id');
             $table->string('name');
+            $table->text('cover');
             $table->integer('pages');
             $table->integer('reward');
             $table->timestamps();
-
-            $table->foreign('image_id')->references('id')->on('images');
         });
     }
 

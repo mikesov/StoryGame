@@ -16,9 +16,16 @@ class StoryFactory extends Factory
      */
     public function definition(): array
     {
+        $file_array = [];
+        $directory_path = '/path/to/directory';
+        $files = glob($directory_path . '/*');
+        foreach ($files as $file) {
+            $file_array[] = $file;
+        }
         return [
-            'name' => $this->faker->sentence(),
-            'pages' => $this->faker->numberBetween(0, 200),
+            'name' => 'Let\'s make a some salad!',
+            'cover' => $file_array[array_rand($file_array)],
+            'pages' => 10,
             'reward' => $this->faker->numberBetween(0, 20),
         ];
     }
