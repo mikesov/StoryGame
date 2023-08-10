@@ -12,6 +12,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    public mixed $name;
+    public mixed $email;
+    public mixed $password;
+    public mixed $coins;
+    public mixed $stories_read;
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +29,54 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'coins',
+        'stories_read',
     ];
+
+    /**
+     * Default attributes.
+     *
+     * @var string[]
+     */
+    protected $attributes = [
+        'name' => 'John Doe',
+        'email' => 'johndoe@examplemail.com',
+        'password' => '12345678',
+        'phone' => '',
+        'coins' => 0,
+        'stories_read' => 0,
+    ];
+
+    public array $errors = [];
+
+    /**
+     * Validate new user's information.
+     *
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        $this->errors = [];
+
+        if (!$this->name) {
+            $errors['name'][] = 'The name field is required.';
+        }
+
+        if (!$this->email) {
+            $errors['email'][] = 'The email field is required';
+        } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'][] = 'The email address is not valid.';
+        }
+
+        if (!$this->password) {
+            $errors['password'][] = 'The password field is required.';
+        } elseif (strlen($this->password) < 6) {
+            $errors['password'][] = 'The password field must be at least 8 characters long.';
+        }
+
+        return empty($errors);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

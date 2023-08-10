@@ -31,13 +31,13 @@ class PagesRouteController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function stories() {
-        return view('pages.stories');
+        return view('pages.stories.index');
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function account() {
-        return view('pages.account.blade.php');
+        return view('pages.account');
     }
 }
