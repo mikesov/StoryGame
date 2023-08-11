@@ -9,11 +9,6 @@ class Story extends Model
 {
     use HasFactory;
 
-    public mixed $name;
-    public mixed $cover;
-    public mixed $pages;
-    public mixed $reward;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -42,6 +37,10 @@ class Story extends Model
         }
 
         if (!$this->cover) {
+            $errors['cover'][] = 'The cover field is required';
+        }
+
+        if (!$this->reward) {
             $errors['cover'][] = 'The cover field is required';
         }
 

@@ -12,13 +12,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * Constructor method.
+     * @return void
+     */
+    public function __constructor() {
 
-    public mixed $name;
-    public mixed $email;
-    public mixed $password;
-    public mixed $coins;
-    public mixed $stories_read;
-
+    }
 
     /**
      * The attributes that are mass assignable.
