@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PagesRouteController;
@@ -21,16 +22,7 @@ Route::get('/', function () {
     $pagesRouteController = new PagesRouteController(new PagesRouteRepository());
     return $pagesRouteController->index();
 });
-Route::get('/stories', function () {
-    $pagesRouteController = new PagesRouteController(new PagesRouteRepository());
-    return $pagesRouteController->stories();
-});
-Route::get('/account', function () {
-    $pagesRouteController = new PagesRouteController(new PagesRouteRepository());
-    return $pagesRouteController->account();
-});
 
-Route::resource('/users', UserController::class, [
-    'only' => ['index', 'create', 'store', 'show', 'edit', 'destroy'],
-    'method' => ['POST', 'GET', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
-]);
+Route::resource('/stories', StoryController::class);
+
+Route::resource('/users', UserController::class);
