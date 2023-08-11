@@ -31,6 +31,10 @@ class UserController extends Controller
         $users = $this->userRepository->getAll();
         return view('users.index')->with('users', $users);
     }
+    public function indexClone()
+    {
+        return User::all();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -79,7 +83,9 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
+        $user = User::find($id);
 
+        return view('users.account')->with('user', $user);
     }
 
     /**
