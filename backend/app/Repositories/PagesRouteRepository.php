@@ -11,4 +11,9 @@ class PagesRouteRepository implements PagesRouteRepositoryInterface
     {
 
     }
+
+    public function find($id)
+    {
+        // TODO: Implement find() method.
+    }
 }
