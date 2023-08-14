@@ -59,17 +59,17 @@ class User extends Authenticatable
     {
         $this->errors = [];
 
-        if (!$this->name) {
+        if (!$this->name || $this->name == '') {
             $errors['name'][] = 'The name field is required.';
         }
 
-        if (!$this->email) {
+        if (!$this->email || $this->email == '') {
             $errors['email'][] = 'The email field is required';
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'][] = 'The email address is not valid.';
         }
 
-        if (!$this->password) {
+        if (!$this->password || $this->email == '') {
             $errors['password'][] = 'The password field is required.';
         } elseif (strlen($this->password) < 6) {
             $errors['password'][] = 'The password field must be at least 8 characters long.';
