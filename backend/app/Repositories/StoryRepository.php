@@ -4,28 +4,16 @@ namespace App\Repositories;
 
 use App\Contracts\RepositoryInterfaces\StoryRepositoryInterface;
 use App\Models\Story;
-use Illuminate\Database\Eloquent\Collection;
 
-class StoryRepository implements StoryRepositoryInterface
+class StoryRepository extends BaseRepository
 {
     /**
-     * Get all users.
+     * Get Story model name.
      *
-     * @return Collection
+     * @return string
      */
-    public function getAll()
+    public function getModel(): string
     {
-        return Story::orderBy('created_at', 'desc')->paginate(20);
-    }
-
-    /**
-     * Find the story by $id.
-     *
-     * @param $id
-     * @return Story
-     */
-    public function find($id): Story
-    {
-        return Story::find($id);
+        return Story::class;
     }
 }
