@@ -23,6 +23,6 @@
             ]) !!}
         </div>
     @else
-        <p>No users found</p>
+        <p>No stories found</p>
     @endif
 @endsection
