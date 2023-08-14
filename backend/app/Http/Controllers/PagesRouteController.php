@@ -24,14 +24,14 @@ class PagesRouteController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function index() {
-        return view('pages.index');
+        return view('index');
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function stories() {
-        return view('pages.stories.index');
+        return view('stories.index');
     }
 
     /**

@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class UserController extends Controller
 {
@@ -24,24 +31,21 @@ class UserController extends Controller
     /**
      * Display the listing of the resources.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return JsonResponse
      */
-    public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(): JsonResponse
     {
         $users = $this->userRepository->getAll();
-        return view('users.index')->with('users', $users);
-    }
-    public function indexClone()
-    {
-        return User::all();
+        return $users;
+//        return view('users.index')->with('users', $users);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
-    public function create(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function create(): \Illuminate\Foundation\Application|View|Factory|Application
     {
         return view('users.create');
     }
@@ -49,76 +53,88 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return Application|\Illuminate\Foundation\Application|RedirectResponse|Redirector
      */
-    public function store(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function store(Request $request): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
-        $user->coins = 0;
-        $user->stories_read = 0;
-
-        if ($user->isValid()) {
-            User::create([
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => password_hash($user->password, PASSWORD_DEFAULT),
-                'coins' => 0,
-                'stories_read' => 0,
-            ]);
-            return redirect('/users');
-        } else {
-            return redirect('/users/create')->withErrors($user->errors);
-        }
+//        $user = new User();
+//        $user->name = $request->input('name');
+//        $user->email = $request->input('email');
+//        $user->password = $request->input('password');
+//        $user->coins = 0;
+//        $user->stories_read = 0;
+//
+//        if ($user->isValid()) {
+//            User::create([
+//                'name' => $user->name,
+//                'email' => $user->email,
+//                'password' => password_hash($user->password, PASSWORD_DEFAULT),
+//                'coins' => 0,
+//                'stories_read' => 0,
+//            ]);
+//            return redirect('/users');
+//        } else {
+//            return redirect('/users/create')->with('errors', $user->errors);
+//        }
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'password' => 'required|size:6,20',
+            'coins' => 'required',
+        ]);
+        return  $this->userRepository->store($request->all());
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show(int $id)
+    public function show(int $id): Response
     {
-        $user = User::find($id);
-
-        return view('users.account')->with('user', $user);
+        return $this->userRepository->find($id);
     }
 
     /**
      * Show the form for editing specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function edit(int $id)
+    public function edit(int $id): Response
     {
-
+        $user = $this->userRepository->find($id);
+        return view('users.edit')->with('user', $user);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, int $id)
     {
-
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'password' => 'required|size:6,20',
+            'coins' => 'required',
+        ]);
+        return $this->userRepository->update($id, $request->all());
     }
 
     /**
      * Delete the specified resource in storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(int $id)
     {
-
+        return $this->userRepository->delete($id);
     }
 }
