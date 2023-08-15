@@ -1,10 +1,6 @@
 <?php
 
-use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PagesRouteController;
-use App\Repositories\PagesRouteRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +14,16 @@ use App\Repositories\PagesRouteRepository;
 */
 
 
-Route::get('/', function () {
-    $pagesRouteController = new PagesRouteController(new PagesRouteRepository());
-    return $pagesRouteController->index();
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
-Route::resource('/stories', StoryController::class);
+Auth::routes();
 
-Route::resource('/users', UserController::class);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
