@@ -9,4 +9,11 @@ class Touchable extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    protected $fillable = [
+        'word_id',
+        'coordinateX',
+        'coordinateY',
+        'vertices',
+    ];
 }

@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Sentence extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'page_id',
+        'positionX',
+        'positionY',
+        'content',
+    ];
 }

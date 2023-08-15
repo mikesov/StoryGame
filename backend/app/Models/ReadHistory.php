@@ -9,4 +9,9 @@ class ReadHistory extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = [
+        'user_id',
+        'story_id',
+        'finish',
+    ];
 }

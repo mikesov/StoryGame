@@ -9,4 +9,10 @@ class Image extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    protected $fillable = [
+        'image_id',
+        'touchable_id',
+        'image',
+    ];
 }
