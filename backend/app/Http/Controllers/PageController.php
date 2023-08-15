@@ -47,11 +47,10 @@ class PageController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @throws ValidationException
      */
     public function store(Request $request): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $this->validate($request, [
+        $request->validate($request, [
             'story_id' => 'required',
             'page_number' => 'required',
         ]);
@@ -66,10 +65,10 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $id
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(string $id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         return $this->pageRepository->find($id);
     }
@@ -77,7 +76,7 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $page = $this->pageRepository->find($id);
 
@@ -87,11 +86,11 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      * @param Request $request
-     * @param string $id
+     * @param int $id
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function update(Request $request, string $id): JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         $this->validate($request, [
             'story_id' => 'required',
@@ -112,10 +111,10 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param string $id
+     * @param $id
      * @return JsonResponse
      */
-    public function destroy(string $id): JsonResponse
+    public function destroy($id): JsonResponse
     {
         return $this->pageRepository->delete($id);
     }

@@ -35,8 +35,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        $users = $this->userRepository->getAll();
-        return $users;
+        return $this->userRepository->getAll();
 //        return view('users.index')->with('users', $users);
     }
 
@@ -54,9 +53,9 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Application|\Illuminate\Foundation\Application|RedirectResponse|Redirector
+     * @return JsonResponse
      */
-    public function store(Request $request): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
+    public function store(Request $request): JsonResponse
     {
 //        $user = new User();
 //        $user->name = $request->input('name');
@@ -90,9 +89,9 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function show(int $id): Response
+    public function show(int $id): JsonResponse
     {
         return $this->userRepository->find($id);
     }
@@ -114,9 +113,9 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): JsonResponse
     {
         $request->validate([
             'name' => 'required|max:255',
@@ -131,9 +130,9 @@ class UserController extends Controller
      * Delete the specified resource in storage.
      *
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
         return $this->userRepository->delete($id);
     }
