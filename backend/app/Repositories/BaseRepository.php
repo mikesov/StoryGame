@@ -12,6 +12,7 @@ abstract class BaseRepository implements AbstractRepositoryInterface
 
     /**
      * Constructor method.
+     * @throws BindingResolutionException
      */
     public function __construct()
     {
@@ -79,11 +80,11 @@ abstract class BaseRepository implements AbstractRepositoryInterface
     /**
      * Update resource in storage.
      *
-     * @param $id
-     * @param $attributes
+     * @param int $id
+     * @param array $attributes
      * @return JsonResponse
      */
-    public function update($id, $attributes = []): JsonResponse
+    public function update(int $id, array $attributes = []): JsonResponse
     {
         $target = $this->model->find($id);
         if ($target) {
