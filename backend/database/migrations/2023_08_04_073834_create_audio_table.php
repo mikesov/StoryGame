@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('word_id')->nullable()->constrained();
             $table->foreignId('sentence_id')->nullable()->constrained();
-            $table->string('name', 64);
             $table->text('audio');
         });
     }

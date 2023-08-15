@@ -233,6 +233,17 @@
       <path value="$PROJECT_DIR$/backend/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/backend/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/backend/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel/fortify" />
+      <path value="$PROJECT_DIR$/backend/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/backend/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/backend/vendor/pragmarx/google2fa" />
+      <path value="$PROJECT_DIR$/backend/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel/jetstream" />
+      <path value="$PROJECT_DIR$/backend/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/backend/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/backend/vendor/livewire/livewire" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
