@@ -25,6 +25,7 @@ class StoryController extends Controller
     public function __construct(StoryRepository $storyRepository)
     {
         $this->storyRepository = $storyRepository;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Audio;
 use App\Repositories\AudioRepository;
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class AudioController extends Controller
 {
@@ -19,6 +20,7 @@ class AudioController extends Controller
      */
     public function __construct(AudioRepository $audioRepository) {
         $this->audioRepository = $audioRepository;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -36,10 +38,11 @@ class AudioController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'sentence_id' => 'required',
             'word_id' => 'required_without:sentence_id',
             'audio' => 'required',
@@ -64,10 +67,11 @@ class AudioController extends Controller
      * @param Request $request
      * @param int $id
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'sentence_id' => 'required',
             'word_id' => 'required_without:sentence_id',
             'audio' => 'required',

@@ -24,12 +24,15 @@ class PageController extends Controller
     public function __construct(PageRepository $pageRepository)
     {
         $this->pageRepository = $pageRepository;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
      * Display the listing of the resource.
+     *
+     * @return JsonResponse
      */
-    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(): JsonResponse
     {
         return $this->pageRepository->getAll();
     }
@@ -47,10 +50,11 @@ class PageController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @throws ValidationException
      */
     public function store(Request $request): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $request->validate($request, [
+        $this->validate($request, [
             'story_id' => 'required',
             'page_number' => 'required',
         ]);

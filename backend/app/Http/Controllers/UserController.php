@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -54,29 +55,11 @@ class UserController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function store(Request $request): JsonResponse
     {
-//        $user = new User();
-//        $user->name = $request->input('name');
-//        $user->email = $request->input('email');
-//        $user->password = $request->input('password');
-//        $user->coins = 0;
-//        $user->stories_read = 0;
-//
-//        if ($user->isValid()) {
-//            User::create([
-//                'name' => $user->name,
-//                'email' => $user->email,
-//                'password' => password_hash($user->password, PASSWORD_DEFAULT),
-//                'coins' => 0,
-//                'stories_read' => 0,
-//            ]);
-//            return redirect('/users');
-//        } else {
-//            return redirect('/users/create')->with('errors', $user->errors);
-//        }
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'password' => 'required|size:6,20',
@@ -114,10 +97,11 @@ class UserController extends Controller
      * @param Request $request
      * @param int $id
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'password' => 'required|size:6,20',

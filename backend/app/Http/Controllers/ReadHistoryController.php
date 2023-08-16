@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ReadHistoryRepository;
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class ReadHistoryController extends Controller
 {
@@ -36,10 +37,11 @@ class ReadHistoryController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'user_id' => 'required',
             'story_id' => 'required',
             'finish' => 'required',
@@ -64,10 +66,11 @@ class ReadHistoryController extends Controller
      * @param Request $request
      * @param int $id
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'user_id' => 'required',
             'story_id' => 'required',
             'finish' => 'required',

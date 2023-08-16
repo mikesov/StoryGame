@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\WordRepository;
 use Illuminate\Http\Request;
 use \Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class WordController extends Controller
 {
@@ -20,6 +21,7 @@ class WordController extends Controller
     public function __constructor(WordRepository $wordRepository): void
     {
         $this->wordRepository = $wordRepository;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -37,14 +39,16 @@ class WordController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'sentence_id' => 'required',
             'content' => 'required|max:25',
             'order' => 'required',
-            'timing' => 'required',
+            'start' => 'required',
+            'end' => 'required',
         ]);
         return $this->wordRepository->store($request->all());
     }
@@ -64,14 +68,16 @@ class WordController extends Controller
      * @param Request $request
      * @param int $id
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'sentence_id' => 'required',
             'content' => 'required|max:25',
             'order' => 'required',
-            'timing' => 'required',
+            'start' => 'required',
+            'end' => 'required',
         ]);
         return $this->wordRepository->update($id, $request->all());
     }

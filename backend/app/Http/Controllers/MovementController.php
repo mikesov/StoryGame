@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\MovementRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class MovementController extends Controller
 {
@@ -18,6 +19,7 @@ class MovementController extends Controller
      */
     public function __construct(MovementRepository $movementRepository) {
         $this->movementRepository = $movementRepository;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -35,10 +37,11 @@ class MovementController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'touchable_id' => 'required',
             'coordinateX' => 'required',
             'coordinateY' => 'required',
@@ -63,10 +66,11 @@ class MovementController extends Controller
      * @param Request $request
      * @param int $id
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function update(Request $request, int $id): JsonResponse
     {
-        $request->validate([
+        $this->validate($request, [
             'touchable_id' => 'required',
             'coordinateX' => 'required',
             'coordinateY' => 'required',
