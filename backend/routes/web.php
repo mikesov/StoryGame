@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,12 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Auth::routes();
+    Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('stories', [StoryController::class, 'index']);
+Route::post('stories', [StoryController::class, 'store']);
+Route::get('stories/{id}', [StoryController::class, 'show']);
+Route::patch('stories/{id}', [StoryController::class, 'update']);
+Route::delete('stories/{id}/delete', [StoryController::class, 'destroy']);
