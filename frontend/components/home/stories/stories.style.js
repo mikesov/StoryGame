@@ -3,23 +3,36 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
-  tabsContainer: {
-    width: "100%",
-    marginTop: SIZES.medium,
+  list: {
+    height: 500,
+    flexGrow: 0,
   },
-  tab: (activeStory, item) => ({
+  cardsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: SIZES.xLarge,
+  },
+  favBtnImage: {
+    width: 30,
+    height: 30,
+    tintColor: COLORS.tertiary,
+  },
+  card: (activeStory, item) => ({
+    width: 150,
+    height: 150,
     paddingVertical: SIZES.small / 2,
     paddingHorizontal: SIZES.small,
     borderRadius: SIZES.medium,
     borderWidth: 1,
     borderColor: activeStory === item ? COLORS.secondary : COLORS.gray2,
   }),
-  tabTitle: (activeStory, item) => ({
+  cardTitle: (activeStory, item) => ({
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
     color: activeStory === item ? COLORS.secondary : COLORS.gray,
   }),
-  tabSubtitle: (activeStory, item) => ({
+  cardSubtitle: (activeStory, item) => ({
     fontFamily: FONT.regular,
     fontSize: SIZES.medium,
     color: activeStory === item ? COLORS.secondary : COLORS.gray2,

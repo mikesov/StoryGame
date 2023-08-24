@@ -8,11 +8,12 @@ const fetchStories = () => {
 
     const fetchData = async () => {
         setIsLoading(true);
-
+        
         try {
-            const response = await axios.request("http://127.0.0.1:8000/api/stories");
+            const response = await axios.get("http://192.168.1.9:8000/api/stories");
 
-            setStory(response.data.data);
+            setStory(response.data);
+            console.log(response.data);
             setIsLoading(false);
         }
         catch (error) {
