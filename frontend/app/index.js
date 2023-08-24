@@ -3,7 +3,7 @@ import { View, Text, ScrollView, SafeAreaView} from 'react-native';
 import { Stack, useRouter} from 'expo-router';
 
 import { COLORS, icons, images, SIZES } from '../constants';
-import { ScreenHeaderBtn, Welcome } from '../components';
+import { ScreenHeaderBtn, Welcome, Stories } from '../components';
 
 const Home = () => {
   return (
@@ -28,6 +28,7 @@ const Home = () => {
           padding: SIZES.medium
         }}>
           <Welcome/>
+          <Stories/>
         </View>
       </ScrollView>
 
