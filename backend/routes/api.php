@@ -25,7 +25,7 @@ use \App\Http\Controllers\MovementController;
 Route::get('stories', [StoryController::class, 'index']);
 Route::post('stories', [StoryController::class, 'store']);
 Route::get('stories/{id}', [StoryController::class, 'show']);
-Route::put('stories/{id}', [StoryController::class, 'update']);
+Route::put('stories/{id}/edit', [StoryController::class, 'update']);
 Route::delete('stories/{id}/delete', [StoryController::class, 'destroy']);
 
 Route::get('pages', [PageController::class, 'index']);
