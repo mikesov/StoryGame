@@ -4,12 +4,10 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
   list: {
-    height: 500,
     flexGrow: 0,
   },
   cardsContainer: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     marginTop: SIZES.xLarge,
   },
