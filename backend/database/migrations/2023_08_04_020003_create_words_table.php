@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('sentence_id')->constrained();
             $table->string('content');
             $table->integer('order');
+            $table->timestamp('start');
+            $table->timestamp('end');
         });
     }
 

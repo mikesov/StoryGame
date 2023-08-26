@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('page_id')->nullable()->constrained();
             $table->foreignId('touchable_id')->nullable()->constrained();
-            $table->string('name', 64);
             $table->text('image');
         });
     }

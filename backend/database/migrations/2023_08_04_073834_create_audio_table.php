@@ -16,8 +16,6 @@ return new class extends Migration
             $table->foreignId('word_id')->nullable()->constrained();
             $table->foreignId('sentence_id')->nullable()->constrained();
             $table->text('audio');
-            $table->time('start');
-            $table->time('end');
         });
     }
 
