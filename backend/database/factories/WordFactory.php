@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Sentence;
+use App\Models\Word;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Word>
+ * @extends Factory<Word>
  */
 class WordFactory extends Factory
 {
@@ -16,10 +18,32 @@ class WordFactory extends Factory
      */
     public function definition(): array
     {
+        $sentence = Sentence::all()->random();
+        $max_words = true;
+        while ($max_words) {
+            $wordCount = Sentence::where('sentence_id', $sentence->id)->count();
+            if ($wordCount < 6) {
+                $max_words = false;
+            } else {
+                $sentence = Sentence::all()->random();
+            }
+        }
+        $order = null;
+        $dup_word = true;
+        while ($dup_word){
+            $order = $this->faker->numberBetween(1, 6);
+            $words = Word::where('sentence_id', $sentence->id);
+            foreach ($words as $word) {
+                if ($order != $word->page_number) {
+                    $dup_word = false;
+                    break;
+                }
+            }
+        }
         return [
-            'sentence_id' => 1,
-            'content' => '',
-            'order' => 1,
+            'sentence_id' => $sentence->id,
+            'content' => $this->faker->word(),
+            'order' => $order,
         ];
     }
 }

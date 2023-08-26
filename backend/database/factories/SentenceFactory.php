@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Page;
+use App\Models\Sentence;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Sentence>
+ * @extends Factory<Sentence>
  */
 class SentenceFactory extends Factory
 {
@@ -16,11 +18,23 @@ class SentenceFactory extends Factory
      */
     public function definition(): array
     {
+        $page = null;
+        $dup_sentence = true;
+        while ($dup_sentence) {
+            $page = Page::all()->random();
+            $sentences = Sentence::all();
+            foreach ($sentences as $sentence) {
+                if ($page->id != $sentence->page_id) {
+                    $dup_sentence = false;
+                    break;
+                }
+            }
+        }
         return [
-            'page_id' => 10,
-            'coordinateX' => 1900,
-            'coordinateY' => 300,
-            'content' => 'It\'s fun to make something together. Now let\'s enjoy',
+            'page_id' => $page->id,
+            'coordinateX' => $this->faker->numberBetween(1000, 3000),
+            'coordinateY' => $this->faker->numberBetween(300, 1700),
+            'content' => $this->faker->sentence(),
         ];
     }
 }

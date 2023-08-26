@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Movement;
+use App\Models\Touchable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +18,22 @@ class MovementFactory extends Factory
      */
     public function definition(): array
     {
+        $touchable = null;
+        $dup_movement = true;
+        while ($dup_movement) {
+            $touchable = Touchable::all()->random();
+            $movements = Movement::all();
+            foreach ($movements as $movement) {
+                if ($touchable->id != $movement->touchable_id) {
+                    $dup_movement = false;
+                    break;
+                }
+            }
+        }
         return [
-            'moveX' => $this->faker->randomFloat(2),
-            'moveY' => $this->faker->randomFloat(2),
+            'touchable_id' => $touchable->id,
+            'moveX' => $this->faker->numberBetween(500, 3500),
+            'moveY' => $this->faker->numberBetween(500, 2000),
         ];
     }
 }

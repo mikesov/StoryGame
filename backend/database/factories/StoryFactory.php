@@ -17,16 +17,16 @@ class StoryFactory extends Factory
     public function definition(): array
     {
         $file_array = [];
-        $directory_path = '/path/to/directory';
+        $directory_path = 'public/assets/files/images';
         $files = glob($directory_path . '/*');
         foreach ($files as $file) {
             $file_array[] = $file;
         }
         return [
-            'name' => 'Let\'s make a some salad!',
+            'name' => $this->faker->sentence(),
             'cover' => $file_array[array_rand($file_array)],
-            'pages' => 10,
-            'reward' => $this->faker->numberBetween(0, 20),
+            'pages' => $this->faker->numberBetween(10, 20),
+            'reward' => $this->faker->numberBetween(5, 20),
         ];
     }
 }
