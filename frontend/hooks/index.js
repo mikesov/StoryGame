@@ -1,7 +1,7 @@
-import {useFetch} from './useFetch';
+import {fetchStories} from './fetchStories';
 import {fetchStory} from './fetchStory';
 
 export {
-  useFetch,
+  fetchStories,
   fetchStory,
 };

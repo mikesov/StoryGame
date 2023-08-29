@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import request from "./request";
 
-const fetchStory = (endpoint, id) => {
-  const [story, setStory] = useState({});
+const fetchPage = (endpoint, id) => {
+  const [page, setPage] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const options = request(endpoint, id);
+  const options = request(endpoint);
 
   const fetchData = async () => {
       setIsLoading(true);
@@ -17,10 +16,8 @@ const fetchStory = (endpoint, id) => {
           const response = await axios.request(options);
           
           // console.log(response.data);
-          setStory(response.data);
-          console.log(story);
+          setPage(response.data);
           setIsLoading(false);
-          setLoading(true);
       }
       catch (error) {
           setError(error);
@@ -39,7 +36,7 @@ const fetchStory = (endpoint, id) => {
       fetchData();
   };
 
-  return { story, isLoading, loading, error, refetch };
+  return { page, isLoading, error, refetch };
 };
 
-export {fetchStory};
+export {fetchPage};
