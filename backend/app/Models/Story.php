@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Story extends Model
 {
@@ -25,11 +26,11 @@ class Story extends Model
     /**
      * Declare relationship to ReadHistory.
      *
-     * @return HasMany
+     * @return MorphToMany
      */
-    public function readHistories(): HasMany
+    public function read_history(): MorphToMany
     {
-        return $this->hasMany('App\ReadHistory');
+        return $this->morphToMany(ReadHistory::class, 'read_history');
     }
 
     /**
@@ -39,6 +40,6 @@ class Story extends Model
      */
     public function pages(): HasMany
     {
-        return $this->hasMany('App\Page');
+        return $this->hasMany(Page::class);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ReadHistory extends Model
 {
@@ -17,22 +17,12 @@ class ReadHistory extends Model
     ];
 
     /**
-     * Declare relationship to User.
+     * Declare relationship to User and Story.
      *
-     * @return BelongsTo
+     * @return MorphTo
      */
-    public function user(): BelongsTo
+    public function read_history(): MorphTo
     {
-        return $this->belongsTo('App\User');
-    }
-
-    /**
-     * Declare relationship to Story.
-     *
-     * @return BelongsTo
-     */
-    public function story(): BelongsTo
-    {
-        return $this->belongsTo('App\Story');
+        return $this->morphTo();
     }
 }

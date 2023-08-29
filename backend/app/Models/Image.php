@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Image extends Model
 {
@@ -18,22 +20,22 @@ class Image extends Model
     ];
 
     /**
-     * Declare relationship to Page.
+     * Declare relationship to Page and Touchable.
      *
-     * @return BelongsTo
+     * @return MorphTo
      */
-    public function page(): BelongsTo
+    public function imageable(): MorphTo
     {
-        return $this->morphMany('App\Page');
+        return $this->morphTo();
     }
-
-    /**
-     * Declare relationship to Touchable.
-     *
-     * @return BelongsTo
-     */
-    public function touchable(): BelongsTo
-    {
-        return $this->belongsTo('App\Touchable');
-    }
+//
+//    /**
+//     * Declare relationship to Touchable.
+//     *
+//     * @return BelongsTo
+//     */
+//    public function touchable(): BelongsTo
+//    {
+//        return $this->belongsTo('App\Touchable');
+//    }
 }

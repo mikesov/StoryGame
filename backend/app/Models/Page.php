@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Page extends Model
 {
@@ -29,7 +30,7 @@ class Page extends Model
      */
     public function story(): BelongsTo
     {
-        return $this->belongsTo('App\Story');
+        return $this->belongsTo(Story::class);
     }
 
     /**
@@ -39,16 +40,16 @@ class Page extends Model
      */
     public function sentences(): HasMany
     {
-        return $this->hasMany('App\Sentence');
+        return $this->hasMany(Sentence::class);
     }
 
     /**
      * Declare relationship to Image.
      *
-     * @return HasOne
+     * @return MorphOne
      */
-    public function image(): HasOne
+    public function image(): MorphOne
     {
-        return $this->hasOne('App\Image');
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Sentence extends Model
 {
@@ -31,7 +32,7 @@ class Sentence extends Model
      */
     public function page(): BelongsTo
     {
-        return $this->belongsTo('App\Page');
+        return $this->belongsTo(Page::class);
     }
 
     /**
@@ -41,16 +42,16 @@ class Sentence extends Model
      */
     public function words(): HasMany
     {
-        return $this->hasMany('App\Word');
+        return $this->hasMany(Word::class);
     }
 
     /**
      * Declare relationship to Audio.
      *
-     * @return HasOne
+     * @return MorphOne
      */
-    public function audio(): HasOne
+    public function audio(): MorphOne
     {
-        return $this->hasOne('App\Audio');
+        return $this->morphOne(Audio::class, 'audioable');
     }
 }

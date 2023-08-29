@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Audio extends Model
 {
@@ -15,4 +16,14 @@ class Audio extends Model
         'word_id',
         'audio',
     ];
+
+    /**
+     * Declare relationship to Sentence and Word.
+     *
+     * @return MorphTo
+     */
+    public function audioable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Touchable extends Model
 {
@@ -27,17 +28,17 @@ class Touchable extends Model
      */
     public function word(): BelongsTo
     {
-        return $this->belongsTo('App\Word');
+        return $this->belongsTo(Word::class);
     }
 
     /**
      * Declare relationship to Image.
      *
-     * @return HasOne
+     * @return MorphOne
      */
-    public function image(): HasOne
+    public function image(): MorphOne
     {
-        return $this->hasOne('App\Image');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
     /**
@@ -47,6 +48,6 @@ class Touchable extends Model
      */
     public function movement(): HasOne
     {
-        return $this->hasOne('App\Movement');
+        return $this->hasOne(Movement::class);
     }
 }
