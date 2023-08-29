@@ -32,7 +32,7 @@ class WordFactory extends Factory
         $dup_word = true;
         while ($dup_word){
             $order = $this->faker->numberBetween(1, 6);
-            $words = Word::where('sentence_id', $sentence->id);
+            $words = Word::where('sentence_id', $sentence->id)->get();
             foreach ($words as $word) {
                 if ($order != $word->page_number) {
                     $dup_word = false;

@@ -7,7 +7,7 @@ use App\Models\Touchable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movement>
+ * @extends Factory<Movement>
  */
 class MovementFactory extends Factory
 {

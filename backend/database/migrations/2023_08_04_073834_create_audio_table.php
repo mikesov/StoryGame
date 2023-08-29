@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('audios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('word_id')->nullable()->constrained();
-            $table->foreignId('sentence_id')->nullable()->constrained();
+            $table->morphs('audioable');
             $table->text('audio');
         });
     }

@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Story;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Story>
+ * @extends Factory<Story>
  */
 class StoryFactory extends Factory
 {
@@ -25,7 +26,6 @@ class StoryFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'cover' => $file_array[array_rand($file_array)],
-            'pages' => $this->faker->numberBetween(10, 20),
             'reward' => $this->faker->numberBetween(5, 20),
         ];
     }

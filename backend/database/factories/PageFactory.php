@@ -19,20 +19,12 @@ class PageFactory extends Factory
     public function definition(): array
     {
         $story = Story::all()->random();
-        $max_pages = true;
-        while ($max_pages) {
-            $pageCount = Page::where('story_id', $story->id)->count();
-            if ($pageCount < $story->pages) {
-                $max_pages = false;
-            } else {
-                $story = Story::all()->random();
-            }
-        }
+
         $page_number = null;
         $dup_page = true;
         while ($dup_page){
             $page_number = $this->faker->numberBetween(1, 20);
-            $pages = Page::where('story_id', $story->id);
+            $pages = Page::where('story_id', $story->id)->get();
             foreach ($pages as $page) {
                 if ($page_number != $page->page_number) {
                     $dup_page = false;
