@@ -11,11 +11,11 @@ import { useRouter } from 'expo-router';
 
 import { icons, SIZES, COLORS } from '../../../constants';
 import styles from './stories.style';
-import { useFetch } from '../../../hooks';
+import { fetchStories } from '../../../hooks';
 
 const Stories = () => {
   const router = useRouter();
-  const { stories, isLoading, error } = useFetch("stories");
+  const { stories, isLoading, error } = fetchStories("stories");
   const [activeStory, setActiveStory] = useState(null);
 
   return (
@@ -44,10 +44,10 @@ const Stories = () => {
             />
           </TouchableOpacity>
         )}
-        numColumns={2}
+        // numColumns={2}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{ columnGap: SIZES.xxLarge }}
-        
+        // columnWrapperStyle={{columnGap: SIZES.large}}
+        horizontal
         style={styles.list}
       />
       )}
