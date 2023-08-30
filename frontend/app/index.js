@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView} from 'react-native';
 import { Stack, useRouter} from 'expo-router';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn, Welcome, Stories } from '../components';
 
 const Home = () => {
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen 
