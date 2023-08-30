@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->morphs('imageable');
+            $table->foreignId('page_id')->nullable()->constrained();
+            $table->foreignId('touchable_id')->nullable()->constrained();
             $table->text('image');
         });
     }

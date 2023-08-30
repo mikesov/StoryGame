@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('audios', function (Blueprint $table) {
+        Schema::create('audio', function (Blueprint $table) {
             $table->id();
-            $table->morphs('audioable');
+            $table->foreignId('sentence_id')->nullable()->constrained();
+            $table->foreignId('word_id')->nullable()->constrained();
             $table->text('audio');
         });
     }
