@@ -24,7 +24,17 @@ class StoryRepository extends BaseRepository
      */
     public function find($id): JsonResponse
     {
-        $story = $this->model->with(['pages'])->where('id', $id)->first();
+        $story = $this->model->with([
+            'pages',
+            'pages.sentences',
+            'pages.image',
+            'pages.sentences.words',
+            'pages.sentences.audio',
+            'pages.sentences.words.audio',
+            'pages.sentences.words.touchable',
+            'pages.sentences.words.touchable.image',
+            'pages.sentences.words.touchable.movement'
+        ])->where('id', $id)->first();
         return response()->json($story);
     }
 }
