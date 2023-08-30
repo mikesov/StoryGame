@@ -5,7 +5,6 @@ import request from "./request";
 const fetchStory = (endpoint, id) => {
   const [story, setStory] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const options = request(endpoint, id);
@@ -18,13 +17,12 @@ const fetchStory = (endpoint, id) => {
           
           // console.log(response.data);
           setStory(response.data);
-          console.log(story);
+        //   console.log(story);
           setIsLoading(false);
-          setLoading(true);
       }
       catch (error) {
           setError(error);
-          console.log(error);
+          console.log(error.response.data);
       } finally {
           setIsLoading(false);
       }
@@ -39,7 +37,7 @@ const fetchStory = (endpoint, id) => {
       fetchData();
   };
 
-  return { story, isLoading, loading, error, refetch };
+  return { story, isLoading, error, refetch };
 };
 
 export {fetchStory};

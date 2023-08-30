@@ -12,36 +12,41 @@ const Story = () => {
   const router = useRouter();
   const route = useRoute();
 
-  const { story, isLoading, loading, error, refetch } = fetchStory("stories", params.id);
-  const [currentScreen, setCurrentScreen] = useState(0);
-  console.log(loading);
+  const { story, isLoading, error, refetch } = fetchStory("stories", params.id);
   // console.log(story.pages[0].id);
+  if (!story?.pages || story?.pages?.length <= 0) {
+    return (
+      <View>
+        <Text>No pages!</Text>
+      </View>
+    );
+  }
+  console.log(story?.pages);
   return (
     <SafeAreaView>
-      <Stack.Screen 
-      options={{
-        headerStyle: { backgroundColor: COLORS.lightWhite },
-        headerShadowVisible: false,
-        headerTitle: story.name,
-      }}/>
-      {loading && (<Text>{story.pages[0].id}</Text>)}
-      
+      {/* <Stack.Screen 
+        options={{
+          headerStyle: { backgroundColor: COLORS.lightWhite },
+          headerShadowVisible: false,
+          headerTitle: story.name,
+      }}/> */}
+      <Text style={{paddingLeft:100}}>{story.pages[0].id}</Text>
       {/* {story.pages.map((page) => {
           return <Text style={{ fontSize: 20 }}>{page.id}</Text>;
         })} */}
-  {/* <SwiperFlatList
-      autoplay
-      autoplayDelay={2}
-      autoplayLoop
-      index={2}
-      showPagination
-      data={colors}
-      renderItem={({ item }) => (
-        <View style={[styles.child, { backgroundColor: item }]}>
-          <Text style={styles.text}>{item}</Text>
+      {/* <SwiperFlatList
+        autoplay
+        autoplayDelay={2}
+        autoplayLoop
+        index={2}
+        showPagination
+        data={story.pages}
+        renderItem={({ item }) => (
+        <View style={{marginTop:20}}>
+          <Text style={{fontSize:20}}>{item.page_id}</Text>
         </View>
-      )}
-    /> */}
+        )}
+      /> */}
     </SafeAreaView>
   )
 }
