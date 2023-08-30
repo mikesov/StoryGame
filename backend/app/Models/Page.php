@@ -46,10 +46,10 @@ class Page extends Model
     /**
      * Declare relationship to Image.
      *
-     * @return MorphOne
+     * @return HasOne
      */
-    public function image(): MorphOne
+    public function image(): HasOne
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->hasOne(Image::class);
     }
 }

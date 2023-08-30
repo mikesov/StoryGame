@@ -33,11 +33,11 @@ class Word extends Model
     /**
      * Declare relationship to Audio.
      *
-     * @return MorphOne
+     * @return HasOne
      */
-    public function audio(): MorphOne
+    public function audio(): HasOne
     {
-        return $this->morphOne(Audio::class, 'audioable');
+        return $this->hasOne(Audio::class);
     }
 
     /**

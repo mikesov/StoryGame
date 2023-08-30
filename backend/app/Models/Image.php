@@ -20,22 +20,38 @@ class Image extends Model
     ];
 
     /**
-     * Declare relationship to Page and Touchable.
+     * Declare relationship to Page.
      *
-     * @return MorphTo
+     * @return BelongsTo
      */
-    public function imageable(): MorphTo
+    public function page(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(Page::class);
     }
-//
-//    /**
-//     * Declare relationship to Touchable.
-//     *
-//     * @return BelongsTo
-//     */
-//    public function touchable(): BelongsTo
-//    {
-//        return $this->belongsTo('App\Touchable');
-//    }
+
+    /**
+     * Declare relationship to Touchable.
+     *
+     * @return BelongsTo
+     */
+    public function touchable(): BelongsTo
+    {
+        return $this->belongsTo(Touchable::class);
+    }
+
+    /**
+     * Get the model that the image belongs to.
+     *
+     * @return mixed|null
+     */
+    public function getModel(): mixed
+    {
+        if ($this->page_id) {
+            return $this->page;
+        } elseif ($this->touchable_id) {
+            return $this->touchable;
+        }
+
+        return null;
+    }
 }

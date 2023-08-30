@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Audio extends Model
@@ -18,12 +19,38 @@ class Audio extends Model
     ];
 
     /**
-     * Declare relationship to Sentence and Word.
+     * Declare relationship to Page.
      *
-     * @return MorphTo
+     * @return BelongsTo
      */
-    public function audioable(): MorphTo
+    public function sentence(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(Sentence::class);
+    }
+
+    /**
+     * Declare relationship to Touchable.
+     *
+     * @return BelongsTo
+     */
+    public function word(): BelongsTo
+    {
+        return $this->belongsTo(Word::class);
+    }
+
+    /**
+     * Get the model that the image belongs to.
+     *
+     * @return mixed|null
+     */
+    public function getModel(): mixed
+    {
+        if ($this->sentence_id) {
+            return $this->sentence;
+        } elseif ($this->word_id) {
+            return $this->word;
+        }
+
+        return null;
     }
 }
