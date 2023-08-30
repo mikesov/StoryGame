@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Story;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PageResource extends JsonResource
+class TouchableResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,15 +14,15 @@ class PageResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $story = $this->whenLoaded('story');
+        $word = $this->whenLoaded('word');
         return [
             'id' => $this->id,
-            'page_number' => $this->page_number,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'story' => new StoryResource($story),
-            'sentences' => SentenceResource::collection($this->whenLoaded('sentences')),
+            'coordinateX' => $this->coordinateX,
+            'coordinateY' => $this->coordinateY,
+            'vertices' => $this->vertices,
+            'word' => new PageResource($word),
             'image' => ImageResource::collection($this->whenLoaded('image')),
+            'movement' => MovementResource::collection($this->whenLoaded('movement')),
         ];
     }
 }

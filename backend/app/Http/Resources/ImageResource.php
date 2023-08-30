@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SentenceResource extends JsonResource
+class ImageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,14 +15,12 @@ class SentenceResource extends JsonResource
     public function toArray(Request $request): array
     {
         $page = $this->whenLoaded('page');
+        $touchable = $this->whenLoaded('touchable');
         return [
             'id' => $this->id,
-            'coordinateX' => $this->coordinateX,
-            'coordinateY' => $this->coordinateY,
-            'content' => $this->content,
+            'image' => $this->image,
             'page' => new PageResource($page),
-            'words' => WordResource::collection($this->whenLoaded('words')),
-            'audio' => AudioResource::collection($this->whenLoaded('audio')),
+            'touchable' => new TouchableResource($touchable),
         ];
     }
 }
