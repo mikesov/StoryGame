@@ -35,8 +35,18 @@ const Stories = () => {
               router.push(`/stories/${item.id}`);
             }}
           >
-            <Text style={styles.cardTitle}>{item.name}</Text>
-            <Text style={styles.cardSubtitle}>{item.reward}</Text>
+            <Image
+              style={styles.coverImage}
+              source={{ uri: item.cover}}
+            />
+            <Text style={styles.cardTitle(activeStory, item)}>{item.name}</Text>
+            <View style={styles.subtitleContainer}>
+              <Text style={styles.cardSubtitle(activeStory, item)}>{item.reward}</Text>
+              <Image
+                source={icons.coin}
+                style={styles.coins}  
+              />
+            </View>
             <Image
               source={icons.heartOutline}
               resizeMode="contain"

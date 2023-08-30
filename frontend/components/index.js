@@ -1,13 +1,15 @@
 import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 
-// home screen
+// Home Screen
 import Welcome from "./home/welcome/Welcome";
 import Stories from './home/stories/Stories';
 
-// fetch
+// Story Screen
+import StoryView from "./home/stories/story/Story";
 
 export {
   ScreenHeaderBtn,
   Welcome,
   Stories,
+  StoryView,
 };
