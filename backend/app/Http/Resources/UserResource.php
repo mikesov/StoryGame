@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StoryResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,10 +17,10 @@ class StoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'cover' => $this->cover,
-            'reward' => $this->reward,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'email' => $this->email,
+            'password' => $this->password,
+            'coins' => $this->coins,
+            'phone' => $this->phone,
             'pages' => PageResource::collection($this->whenLoaded('pages')),
             'read_histories' => ReadHistoryResource::collection($this->whenLoaded('read_history')),
         ];
