@@ -79,7 +79,6 @@ class StoryController extends Controller
     public function show(int $id): JsonResponse
     {
         return $this->storyRepository->find($id);
-//        return view('stories.story')->with('story', $story);
     }
 
     /**
