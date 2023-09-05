@@ -56,8 +56,10 @@ const Stories = () => {
         )}
         // numColumns={2}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{columnGap: 20}}
         // columnWrapperStyle={{columnGap: SIZES.large}}
         horizontal
+        showsHorizontalScrollIndicator={false}
         style={styles.list}
       />
       )}
