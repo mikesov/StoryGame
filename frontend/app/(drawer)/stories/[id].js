@@ -3,9 +3,9 @@ import { View, Text, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl
 import { Stack, useRouter, useGlobalSearchParams } from 'expo-router';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
-import { COLORS, icons, SIZES } from '../../constants';
-import { fetchStory } from '../../hooks';
-import { StoryView, ScreenHeaderBtn } from '../../components';
+import { COLORS, icons, SIZES } from '../../../constants';
+import { fetchStory } from '../../../hooks';
+import { StoryView, ScreenHeaderBtn } from '../../../components';
 
 const Story = () => {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);

@@ -7,25 +7,23 @@ import * as SplashScreen from 'expo-splash-screen';
 //   initialRouteName: "home",
 // };
 
-SplashScreen.preventAutoHideAsync();
-const Layout = () => {
-  const [fontsLoaded] = useFonts({
-    PTSansRegular: require("../assets/fonts/PTSans-Regular.ttf"),
-    PTSansBold: require("../assets/fonts/PTSans-Bold.ttf"),
-    PTSansItalic: require("../assets/fonts/PTSans-Italic.ttf"),
-  });
+// SplashScreen.preventAutoHideAsync();
+// const Layout = () => {
+//   const [fontsLoaded] = useFonts({
+//     PTSansRegular: require("../assets/fonts/PTSans-Regular.ttf"),
+//     PTSansBold: require("../assets/fonts/PTSans-Bold.ttf"),
+//     PTSansItalic: require("../assets/fonts/PTSans-Italic.ttf"),
+//   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+//   const onLayoutRootView = useCallback(async () => {
+//     if (fontsLoaded) {
+//       await SplashScreen.hideAsync();
+//     }
+//   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+//   if (!fontsLoaded) {
+//     return null;
+//   }
 
-  return <Stack onLayout={onLayoutRootView}/>
-};
-
-export default Layout;
+//   return <Stack onLayout={onLayoutRootView}/>
+// };
