@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONT, SIZES } from "../../constants";
 
 const styles = StyleSheet.create({
   list: {
@@ -11,10 +11,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: SIZES.xLarge,
   },
+  cardsInfo: {
+    display: "flex",
+    flexDirection: "row",
+    width: 150
+  },
   coverImage: {
     width: 150,
     height: 150,
     position: "absolute",
+    resizeMode: 'cover',
     margin: 0,
     borderRadius: SIZES.medium,
   },
@@ -22,6 +28,9 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     tintColor: COLORS.tertiary,
+    position: "absolute",
+    right: 10,
+    bottom: 10,
   },
   card: (activeStory, item) => ({
     width: 150,

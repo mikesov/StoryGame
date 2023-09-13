@@ -16,7 +16,7 @@ const fetchStories = (endpoint) => {
             const response = await axios.request(options);
 
             setStories(response.data);
-            // console.log(data);
+            // console.log(stories);
             setIsLoading(false);
         }
         catch (error) {

@@ -5,13 +5,7 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-screen-orientation",
-        {
-          "initialOrientation": "LANDSCAPE"
-        }
-      ]
+      "expo-router"
     ],
     "name": "frontend",
     "slug": "frontend"

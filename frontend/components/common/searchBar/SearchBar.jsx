@@ -9,21 +9,17 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import styles from './welcome.style';
+import styles from './searchBar.style';
 import { icons, SIZES } from '../../../constants';
 
 const storyTypes = ["Genre 1", "Genre 2", "Genre 3"];
 
-const Welcome = () => {
+const SearchBar = () => {
   const router = useRouter();
   const [activeSuggestion, setActiveSuggestion] = useState("Genre 1");
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.userName}>Hello Michael</Text>
-        <Text style={styles.welcomeMessage}>Welcome to Story Game</Text>
-      </View>
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
@@ -63,8 +59,9 @@ const Welcome = () => {
           horizontal
         />
       </View>
+
     </View>
   )
 }
 
-export default Welcome
+export default SearchBar
