@@ -46,7 +46,7 @@ abstract class BaseRepository implements AbstractRepositoryInterface
      */
     public function getAll(): JsonResponse
     {
-        $data = $this->model->all();
+        $data = $this->model->paginate(10);
         return response()->json($data);
     }
 

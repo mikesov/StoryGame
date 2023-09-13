@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('touchables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('wordId');
-            $table->foreignId('wordId')->constrained();
+            $table->unsignedBigInteger('word_id');
+            $table->foreignId('word_id')->constrained();
             $table->integer('coordinateX');
             $table->integer('coordinateY');
             $table->json('vertices');

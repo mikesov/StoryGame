@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoryCreateRequest;
+use App\Http\Requests\StoryUpdateRequest;
 use App\Models\Story;
 use App\Models\User;
 use App\Repositories\StoryRepository;
@@ -25,7 +27,7 @@ class StoryController extends Controller
     public function __construct(StoryRepository $storyRepository)
     {
         $this->storyRepository = $storyRepository;
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+//        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -48,19 +50,15 @@ class StoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoryCreateRequest $request
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoryCreateRequest $request): JsonResponse
     {
-        $this->validate($request, [
-           'name' => 'required|max:255',
-           'cover' => 'required',
-           'pages' => 'required',
-           'reward' => 'required',
-        ]);
-        return $this->storyRepository->store($request->all());
+        $data = $request->validated();
+
+        return $this->storyRepository->store($data);
 //        Story::create([
 //            'name' => $request->input('name'),
 //            'cover' => $request->input('cover'),
@@ -97,20 +95,15 @@ class StoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param StoryUpdateRequest $request
      * @param int $id
      * @return JsonResponse|null
-     * @throws ValidationException
      */
-    public function update(Request $request, int $id): ?JsonResponse
+    public function update(StoryUpdateRequest $request, int $id): ?JsonResponse
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'cover' => 'required',
-            'pages' => 'required',
-            'reward' => 'required',
-        ]);
-        return $this->storyRepository->update($id, $request->all());
+        $data = $request->validated();
+
+        return $this->storyRepository->update($id, $data);
 //        $story = $this->storyRepository->find($id);
 //        if ($story->name != $request->input('name')) {
 //            $story->name = $request->input('name');

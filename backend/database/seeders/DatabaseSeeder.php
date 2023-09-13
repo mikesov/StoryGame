@@ -15,20 +15,11 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(StoriesTableSeeder::class);
         $this->call(ReadHistoriesTableSeeder::class);
-        $this->call(WriteHistoriesTableSeeder::class);
-        $this->call(AchievementsTableSeeder::class);
-        $this->call(UserAchievementsTableSeeder::class);
-        $this->call(GenresTableSeeder::class);
-        $this->call(StoryGenresTableSeeder::class);
         $this->call(PagesTableSeeder::class);
         $this->call(SentencesTableSeeder::class);
         $this->call(WordsTableSeeder::class);
-        $this->call(BlinkImagesTableSeeder::class);
         $this->call(TouchablesTableSeeder::class);
         $this->call(AudiosTableSeeder::class);
-        $this->call(BackgroundImagesSeeder::class);
         $this->call(MovementsTableSeeder::class);
-        $this->call(DeleteHistoriesTableSeeder::class);
-        $this->call(AchievementCRUDHistoriesTableSeeder::class);
     }
 }

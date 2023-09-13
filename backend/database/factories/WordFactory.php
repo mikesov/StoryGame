@@ -44,6 +44,8 @@ class WordFactory extends Factory
             'sentence_id' => $sentence->id,
             'content' => $this->faker->word(),
             'order' => $order,
+            'start' => $this->faker->time(),
+            'end'=> $this->faker->time(),
         ];
     }
 }

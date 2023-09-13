@@ -63,6 +63,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'password' => 'required|size:6,20',
+            'phone' => 'required|max:10',
             'coins' => 'required',
         ]);
         return  $this->userRepository->store($request->all());
@@ -83,9 +84,9 @@ class UserController extends Controller
      * Show the form for editing specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Foundation\Application|Application|Factory|View
      */
-    public function edit(int $id): Response
+    public function edit(int $id): Application|Factory|View|\Illuminate\Foundation\Application
     {
         $user = $this->userRepository->find($id);
         return view('users.edit')->with('user', $user);

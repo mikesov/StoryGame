@@ -22,7 +22,7 @@ class PageResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'story' => new StoryResource($story),
-            'sentences' => SentenceResource::collection($this->whenLoaded('sentences')),
+            'sentence' => SentenceResource::collection($this->whenLoaded('sentence')),
             'image' => ImageResource::collection($this->whenLoaded('image')),
         ];
     }

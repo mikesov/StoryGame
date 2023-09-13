@@ -26,8 +26,8 @@ class StoryRepository extends BaseRepository
     {
         $story = $this->model->with([
             'pages',
-            'pages.sentences',
             'pages.image',
+            'pages.sentences',
             'pages.sentences.words',
             'pages.sentences.audio',
             'pages.sentences.words.audio',
