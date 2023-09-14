@@ -10,8 +10,12 @@ const styles = StyleSheet.create({
     margin: 0,
     top: 0,
     left: 0,
-    zIndex: 3,
+    zIndex: 5,
   },
+  noPages: {
+    alignContent: "center",
+    justifyContent: "center",
+  }
 });
 
 export default styles;
