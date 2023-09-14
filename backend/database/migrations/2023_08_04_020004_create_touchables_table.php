@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('word_id');
             $table->foreignId('word_id')->constrained();
-            $table->integer('coordinateX');
-            $table->integer('coordinateY');
             $table->json('vertices');
         });
     }

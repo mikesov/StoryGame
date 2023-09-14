@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('coordinateX');
             $table->integer('coordinateY');
             $table->text('content');
+            $table->integer('duration');
             $table->timestamps();
         });
     }

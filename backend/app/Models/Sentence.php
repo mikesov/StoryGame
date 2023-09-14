@@ -22,7 +22,9 @@ class Sentence extends Model
         'page_id',
         'positionX',
         'positionY',
+        'order',
         'content',
+        'duration',
     ];
 
     /**

@@ -15,9 +15,7 @@ class Touchable extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'word_id',
-        'coordinateX',
-        'coordinateY',
+        'sentence_id',
         'vertices',
     ];
 
@@ -28,7 +26,7 @@ class Touchable extends Model
      */
     public function word(): BelongsTo
     {
-        return $this->belongsTo(Word::class);
+        return $this->belongsTo(Sentence::class);
     }
 
     /**
