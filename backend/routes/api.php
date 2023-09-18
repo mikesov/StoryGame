@@ -69,6 +69,12 @@ Route::get('touchables/{id}', [TouchableController::class, 'show']);
 Route::put('touchables/{id}/edit', [TouchableController::class, 'update']);
 Route::delete('touchables/{id}/delete', [TouchableController::class, 'destroy']);
 
+Route::get('audio', [AudioController::class, 'index']);
+Route::post('audio', [AudioController::class, 'store']);
+Route::get('audio/{id}', [AudioController::class, 'show']);
+Route::put('audio/{id}/edit', [AudioController::class, 'update']);
+Route::delete('audio/{id}/delete', [AudioController::class, 'destroy']);
+
 Route::get('images', [ImageController::class, 'index']);
 Route::post('images', [ImageController::class, 'store']);
 Route::get('images/{id}', [ImageController::class, 'show']);

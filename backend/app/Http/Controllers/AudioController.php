@@ -20,7 +20,7 @@ class AudioController extends Controller
      */
     public function __construct(AudioRepository $audioRepository) {
         $this->audioRepository = $audioRepository;
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+//        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
