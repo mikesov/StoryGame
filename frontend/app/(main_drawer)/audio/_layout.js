@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
 
-export default function GamesLayout() {
+export default function AudioLayout() {
   return <Stack />;
 }

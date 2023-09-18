@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import request from "./request";
 
-const fetchStories = (endpoint) => {
-    const [stories, setStories] = useState({});
+const fetchAudio = (endpoint) => {
+    const [audio, setAudio] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -15,8 +15,8 @@ const fetchStories = (endpoint) => {
         try {
             const response = await axios.request(options);
 
-            setStories(response.data);
-            // console.log(stories);
+            setAudio(response.data);
+            // console.log(audio);
             setIsLoading(false);
         }
         catch (error) {
@@ -36,7 +36,7 @@ const fetchStories = (endpoint) => {
         fetchData();
     };
 
-    return { stories, isLoading, error, refetch };
+    return { audio, isLoading, error, refetch };
 };
 
-export default fetchStories;
+export default fetchAudio;

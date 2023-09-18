@@ -40,4 +40,4 @@ const fetchStory = (endpoint, id) => {
   return { story, isLoading, error, refetch };
 };
 
-export {fetchStory};
+export default fetchStory;

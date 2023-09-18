@@ -15,8 +15,6 @@ import { icons, SIZES, COLORS } from '../../constants';
 import styles from './storiesList.style';
 import { fetchStories } from '../../hooks';
 
-
-
 const StoriesList = () => {
   const router = useRouter();
   const { stories, isLoading, error } = fetchStories("stories");
@@ -38,7 +36,7 @@ const StoriesList = () => {
             >
               <View
                 style={styles.card(activeStory, item)}
-                onPress={() => {
+                onTouchStart={() => {
                   setActiveStory(item);
                 }}
               >
@@ -64,8 +62,8 @@ const StoriesList = () => {
           )}
           numColumns={2}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={{rowGap: SIZES.large}}
-          columnWrapperStyle={{columnGap: SIZES.large}}
+          contentContainerStyle={{rowGap: SIZES.medium}}
+          columnWrapperStyle={{columnGap: SIZES.medium}}
           showsVerticalScrollIndicator={false}
           style={styles.list}
         />

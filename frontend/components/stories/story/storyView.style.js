@@ -13,9 +13,15 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   noPages: {
+    flex: 1,
     alignContent: "center",
     justifyContent: "center",
-  }
+  },
+  loading: {
+    flex: 1,
+    alignContent: "center",
+    justifyContent: "center",
+  },
 });
 
 export default styles;

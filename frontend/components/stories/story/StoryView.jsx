@@ -1,5 +1,5 @@
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { View, Text, Dimensions, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, Dimensions, ScrollView, SafeAreaView, ActivityIndicator } from 'react-native';
 import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import * as ScreenOrientation from 'expo-screen-orientation';
@@ -32,24 +32,24 @@ const StoryView = () => {
     return (
       <SafeAreaView>
         <Stack.Screen
-        options={{
-          headerShown: false
-        }}
-      />
-
-      <View style={styles.headerButtonContainer}>
-        <ScreenHeaderBtn 
-          iconUrl={icons.chevronLeft} 
-          dimension="60%"
-          handlePress={() => {
-            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-            router.back();
+          options={{
+            headerShown: false
           }}
         />
-      </View>
-      <View style={styles.noPages}>
-        <Text>No pages!</Text>
-      </View>
+
+        <View style={styles.headerButtonContainer}>
+          <ScreenHeaderBtn 
+            iconUrl={icons.chevronLeft} 
+            dimension="60%"
+            handlePress={() => {
+              ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+              router.back();
+            }}
+          />
+        </View>
+        <View style={styles.noPages}>
+          <Text>No pages!</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -82,7 +82,6 @@ const StoryView = () => {
           <Page item={item} setPageFinish={setPageFinish} currentIndex={currentIndex}/>
         )}
         index={0}
-        on
       />
 
     </SafeAreaView>

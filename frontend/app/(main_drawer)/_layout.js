@@ -15,10 +15,10 @@ export default function DrawerLayout() {
       }}
     />
     <Drawer.Screen 
-      name='games'
+      name='audio'
       options={{
-        drawerLabel: "Games",
-        title: "Games",
+        drawerLabel: "Audio",
+        title: "Audio",
       }}
     />
   </Drawer>);

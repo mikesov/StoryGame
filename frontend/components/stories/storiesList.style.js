@@ -35,8 +35,6 @@ const styles = StyleSheet.create({
   card: (activeStory, item) => ({
     width: 150,
     height: 150,
-    paddingVertical: SIZES.small / 2,
-    paddingHorizontal: SIZES.small,
     borderRadius: SIZES.medium,
     borderWidth: 1,
     borderColor: activeStory === item ? COLORS.secondary : COLORS.gray2,
@@ -44,6 +42,8 @@ const styles = StyleSheet.create({
   cardTitle: (activeStory, item) => ({
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
+    left: 10,
+    top: 10,
     textShadowColor: COLORS.black,
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10,
@@ -60,6 +60,8 @@ const styles = StyleSheet.create({
   subtitleContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
+    left: 10,
+    top: 10,
   },
   coins: {
     width: 20,
