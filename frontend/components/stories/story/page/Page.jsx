@@ -1,27 +1,36 @@
 import { Dimensions, View, ActivityIndicator } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Audio } from 'expo-av';
 import styles from './page.style';
 import {Canvas, Text, Rect, Fill, Image, useImage, useFont, Path, Group, Skia, TextBlob } from '@shopify/react-native-skia'
 
-const Page = ({ item, setPageFinish, currentIndex }) => {;
+const Page = ({ item, setPageFinish}) => {;
+  const { width, height } = Dimensions.get("window");
+
   const [currentWord, setCurrentWord] = useState(0);
   const [wordPos, setWordPos] = useState(0);
   const [prevLength, setPrevLength] = useState(0);
+  const [posX, setPosX] = useState(-2000);
 
-  const [soundObject, setSoundObject] = useState(null);
+  const soundObjects = useRef([]);
   const [audioPlayed, setAudioPlayed] = useState(false);
   const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [sentenceChanged, setSentenceChanged] = useState(false);
+  const [sentenceWords, setSentenceWords] = useState([]);
 
   useEffect(() => {
     const loadAudio = async () => {
       try {
-        // console.log("Loading audio: " + item.sentences[sentenceIndex].audio.audio);
-        const { sound } = await Audio.Sound.createAsync(
-          { uri: item.sentences[sentenceIndex].audio.audio },
-          { shouldPlay: false }
-        );
-        setSoundObject(sound);
+        console.log("Loading audio");
+        for (let i = 0; i < item.sentences.length; i++) {
+          const { sound } = await Audio.Sound.createAsync(
+            { uri: item.sentences[i].audio.audio },
+            { shouldPlay: false }
+          );
+          soundObjects.current.push(sound);
+          // console.log("Audio of sentence " + i + " of page " + item.sentences[i].page_id + ": ");
+          // console.log(sound);
+        }
         // console.log(sound);
       } catch (error) {
         console.error('Error loading audio:', error);
@@ -31,33 +40,60 @@ const Page = ({ item, setPageFinish, currentIndex }) => {;
     loadAudio();
 
     return () => {
-      if (soundObject) {
-        soundObject.unloadAsync();
+      for (let i = 0; i < soundObjects.current.length; i++) {
+        soundObjects.current[i].unloadAsync();
       }
     };
-  }, [item.sentences[sentenceIndex].audio.audio, sentenceIndex]);
+  }, [item.sentences]);
+
+  useEffect(() => {
+    if (sentenceIndex < item.sentences.length - 1 && sentenceChanged) {
+      setSentenceIndex(sentenceIndex+1);
+    }
+    try {
+      let sentenceWidth = font.getTextWidth(item.sentences[sentenceIndex].content);
+      setPosX(width/2 - sentenceWidth/2);
+      console.log("Load sentence position success");
+    } catch (error) {
+      console.log("Error loading sentence position: " + error);
+    }
+  }, [sentenceIndex, sentenceChanged]);
+
+  const loadWords = (i) => {
+    let words = item.sentences[i].content.split(' ');
+    let sentenceWordsRef = item.sentences[i].words.filter(item => words.includes(item.content));
+    sentenceWordsRef = sentenceWordsRef.sort((a, b) => {
+      return a.order - b.order;
+    })
+    setSentenceWords(sentenceWordsRef);
+  };
 
   const playAudio = async () => {
     setAudioPlayed(true);
     try {
-      if (soundObject && !audioPlayed) {
+      if (soundObjects && !audioPlayed) {
         setPageFinish(false);
-        let sentenceIndexRef = sentenceIndex;
 
         for (let i = 0; i < item.sentences.length; i++) {
+          setSentenceChanged(false);
           // console.log(sentenceIndex);
           console.log("Playing audio");
-          await soundObject.playAsync();
+          await soundObjects.current[i].playAsync();
+          await soundObjects.current[i].getStatusAsync();
           
-          // console.log(soundObject);
+          // console.log(soundObjects);
           let prevLengthRef = prevLength;
-          for (let j = 0; j < item.sentences[i].content.split(' ').length; j++) {
-            const start = item.sentences[i].words[j].start;
-            const end = item.sentences[i].words[j].end;
-            setCurrentWord(item.sentences[i].words[j].content);
+          let sentenceWidth = font.getTextWidth(item.sentences[i].content);
+          setPosX(width/2 - sentenceWidth/2);
+
+          await loadWords(i);
+          for (let j = 0; j < sentenceWords; j++) {
+            const start = sentenceWords[j].start;
+            const end = sentenceWords[j].end;
+            setCurrentWord(sentenceWords[j].content);
             setWordPos(width/2 - sentenceWidth/2 + prevLengthRef);
             // console.log(wordPos);
-            const wordLength = font.getTextWidth(' ' + item.sentences[i].words[j].content);
+            const wordLength = font.getTextWidth(' ' + sentenceWords[j].content);
     
             await new Promise((resolve) =>
               setTimeout(() => {
@@ -71,12 +107,7 @@ const Page = ({ item, setPageFinish, currentIndex }) => {;
               setCurrentWord("");
             }
           }
-          if (sentenceIndexRef < item.sentences.length - 1) {
-            sentenceIndexRef += 1;
-            await (() => {setSentenceIndex(sentenceIndexRef)});
-            console.log(sentenceIndexRef);
-            console.log(sentenceIndex);
-          }
+          setSentenceChanged(true);
 
           await new Promise((resolve) =>
             setTimeout(() => {
@@ -97,17 +128,12 @@ const Page = ({ item, setPageFinish, currentIndex }) => {;
     }
   };
 
-  const { width, height } = Dimensions.get("window");
-
   const image = useImage(item.image.image);
 
   const font = useFont(require("../../../../assets/fonts/PTSans-Regular.ttf"), 24);
   if (font === null) {
     return null;
   }
-  const words = item.sentences[0].content.split(' ');
-  const sentenceWidth = font.getTextWidth(item.sentences[0].content);
-  const posX = width/2 - sentenceWidth/2;
 
   return (
     <Canvas
@@ -132,7 +158,7 @@ const Page = ({ item, setPageFinish, currentIndex }) => {;
         <Text
           x={posX}
           y={20}
-          text={item.sentences[0].content}
+          text={item.sentences[sentenceIndex].content}
           color="black"
           font={font}
         />

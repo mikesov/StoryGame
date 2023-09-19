@@ -16,7 +16,6 @@ const StoryView = () => {
 
   const swiperRef = useRef(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [pageFinish, setPageFinish] = useState(false);
 
   useEffect(() => {
@@ -79,7 +78,7 @@ const StoryView = () => {
         data={story.pages}
         disableGesture={!pageFinish}
         renderItem={({ item }) => (
-          <Page item={item} setPageFinish={setPageFinish} currentIndex={currentIndex}/>
+          <Page item={item} setPageFinish={setPageFinish}/>
         )}
         index={0}
       />
