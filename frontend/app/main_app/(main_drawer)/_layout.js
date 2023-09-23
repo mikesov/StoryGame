@@ -21,5 +21,12 @@ export default function DrawerLayout() {
         title: "Audio",
       }}
     />
+    <Drawer.Screen 
+      name='create_story'
+      options={{
+        drawerLabel: "Create Story",
+        title: "Create Story",
+      }}
+    />
   </Drawer>);
 }

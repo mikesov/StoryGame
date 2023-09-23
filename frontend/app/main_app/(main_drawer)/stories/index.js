@@ -6,8 +6,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import * as ScreenOrientation from 'expo-screen-orientation';
 
-import { SearchBar, StoriesList } from '../../../components';
-import { SIZES } from '../../../constants';
+import { SearchBar, StoriesList } from '../../../../components';
+import { SIZES } from '../../../../constants';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -17,9 +17,9 @@ export default function Stories() {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
 
   const [fontsLoaded, fontError] = useFonts({
-    PTSansRegular: require("../../../assets/fonts/PTSans-Regular.ttf"),
-    PTSansBold: require("../../../assets/fonts/PTSans-Bold.ttf"),
-    PTSansItalic: require("../../../assets/fonts/PTSans-Italic.ttf"),
+    PTSansRegular: require("../../../../assets/fonts/PTSans-Regular.ttf"),
+    PTSansBold: require("../../../../assets/fonts/PTSans-Bold.ttf"),
+    PTSansItalic: require("../../../../assets/fonts/PTSans-Italic.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

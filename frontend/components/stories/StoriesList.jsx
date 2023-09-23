@@ -1,15 +1,12 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { 
   View,
   Text,
-  TouchableOpacity,
   Image,
   FlatList,
   ActivityIndicator,
 } from 'react-native';
 import { Link, useRouter } from 'expo-router';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 
 import { icons, SIZES, COLORS } from '../../constants';
 import styles from './storiesList.style';
@@ -32,7 +29,7 @@ const StoriesList = () => {
           data={stories.data}
           renderItem={({ item }) => (
             <Link
-              href={`/(main_drawer)/stories/${item.id}`}
+              href={`/main_app/(main_drawer)/stories/${item.id}`}
             >
               <View
                 style={styles.card(activeStory, item)}

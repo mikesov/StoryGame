@@ -10,6 +10,7 @@ import chevronLeft from '../assets/icons/chevron-left.png'
 import chevronRight from '../assets/icons/chevron-right.png';
 import coin from '../assets/icons/coin.png';
 import playButton from '../assets/icons/play-button.png';
+import logOut from '../assets/icons/logout.png';
 
 export default {
   heart,
@@ -24,4 +25,5 @@ export default {
   chevronRight,
   coin,
   playButton,
+  logOut,
 };

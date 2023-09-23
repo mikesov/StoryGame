@@ -1,6 +1,4 @@
 import { Stack } from "expo-router";
-import { ScreenHeaderBtn } from "../../../components";
-import { icons } from "../../../constants";
 
 export default function StoriesLayout() {
   return (

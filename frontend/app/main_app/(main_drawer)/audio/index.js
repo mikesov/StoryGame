@@ -5,16 +5,16 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { icons, SIZES, COLORS } from '../../../constants';
-import { fetchAudio } from '../../../hooks';
-import { AudioList } from '../../../components';
+import { icons, SIZES, COLORS } from '../../../../constants';
+import { fetchAudio } from '../../../../hooks';
+import { AudioList } from '../../../../components';
 
 export default function Audio() {
 
   const [fontsLoaded, fontError] = useFonts({
-    PTSansRegular: require("../../../assets/fonts/PTSans-Regular.ttf"),
-    PTSansBold: require("../../../assets/fonts/PTSans-Bold.ttf"),
-    PTSansItalic: require("../../../assets/fonts/PTSans-Italic.ttf"),
+    PTSansRegular: require("../../../../assets/fonts/PTSans-Regular.ttf"),
+    PTSansBold: require("../../../../assets/fonts/PTSans-Bold.ttf"),
+    PTSansItalic: require("../../../../assets/fonts/PTSans-Italic.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

@@ -1,4 +1,4 @@
-import { StoryView } from '../../../components';
+import { StoryView } from '../../../../components';
 import { Stack } from "expo-router";
 import { View } from 'react-native'
 import * as ScreenOrientation from 'expo-screen-orientation';

@@ -14,15 +14,8 @@ const StoryView = () => {
   const router = useRouter();
   const { width, height } = Dimensions.get("window");
 
-  const swiperRef = useRef(null);
-
   const [pageFinish, setPageFinish] = useState(false);
-
-  useEffect(() => {
-    if (swiperRef.current) {
-      setCurrentIndex(swiperRef.current.getCurrentIndex());
-    }
-  }, []);
+  // const [sentenceWords, setSentenceWords] = useState([]);
 
   const params = useGlobalSearchParams();
 
@@ -54,6 +47,23 @@ const StoryView = () => {
   }
   // console.log(story.pages);
 
+  // useEffect(() => {
+  //   try {
+  //     let sentenceWordsRef = [];
+  //     for (let i = 0; i < story.pages.sentences.length; i++) {
+  //       let words = story.pages.sentences[i].words.filter(item => item.sentences[i].content.split(' ').includes(item.content));
+  //       // console.log(sentenceWordsRef);
+  //       words = words.sort((a, b) => {
+  //         return a.order - b.order;
+  //       });
+  //       sentenceWordsRef.push(words);
+  //     };
+  //     setSentenceWords(sentenceWordsRef);
+  //   } catch (error) {
+  //     console.log("Error loading sentence words: " + error);
+  //   }
+  // }, []);
+
   return (
     <SafeAreaView>
       <Stack.Screen
@@ -74,7 +84,6 @@ const StoryView = () => {
       </View>
 
       <SwiperFlatList
-        ref={swiperRef}
         data={story.pages}
         disableGesture={!pageFinish}
         renderItem={({ item }) => (
