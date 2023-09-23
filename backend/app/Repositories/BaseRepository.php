@@ -119,7 +119,7 @@ abstract class BaseRepository implements AbstractRepositoryInterface
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'Failed to delete data, cannot find the requested $id.'
+                'message' => 'Failed to delete data, cannot find the requested id: '.$id
             ]);
         }
     }

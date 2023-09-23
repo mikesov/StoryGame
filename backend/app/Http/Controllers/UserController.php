@@ -64,7 +64,6 @@ class UserController extends Controller
             'email' => 'required|max:255',
             'password' => 'required|size:6,20',
             'phone' => 'required|max:10',
-            'coins' => 'required',
         ]);
         return  $this->userRepository->store($request->all());
     }

@@ -35,6 +35,11 @@ class StoryRepository extends BaseRepository
             'pages.sentences.words.touchable.image',
             'pages.sentences.words.touchable.movement'
         ])->where('id', $id)->first();
+        if (!$story) {
+            return response()->json([
+                'message' => 'No story found with the given id: '.$id,
+            ], 404);
+        }
         return response()->json($story);
     }
 }
